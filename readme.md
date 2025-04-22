@@ -37,3 +37,8 @@ Geolocation.getCurrentPosition(({ coords }) => {
 [version-badge]: https://badge.fury.io/js/react-native-amap-geolocation.svg
 [build-badge]: https://github.com/qiuxiang/react-native-amap-geolocation/actions/workflows/build.yml/badge.svg
 [build]: https://github.com/qiuxiang/react-native-amap-geolocation/actions/workflows/build.yml
+
+
+android/gradle.properties
+# 高德地图-使用 com.amap.api:3dmap:10.0.600
+amapEnabled=true

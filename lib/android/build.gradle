@@ -8,8 +8,12 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
     }
 }
-
+def amapEnabled = project.properties['amapEnabled'] ?: false
 dependencies {
     compileOnly 'com.facebook.react:react-native:+'
-    implementation 'com.amap.api:location:6.2.0'
+    if (amapEnabled.toBoolean()) {
+        implementation 'com.amap.api:3dmap:10.0.600'
+    } else {
+        implementation 'com.amap.api:location:6.4.7'
+    }
 }
