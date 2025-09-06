@@ -1,7 +1,24 @@
 import { NativeModules, NativeEventEmitter, Platform } from "react-native";
 import { Location, ReGeocode, AppKey, LocationMode, LocationPurpose, GeoLanguage } from "./types";
 
-const AMapGeolocation = NativeModules.AMapGeolocation;
+
+const LINKING_ERROR =
+  `The package 'react-native-amap-geolocation' doesn't seem to be linked. Make sure: \n\n` +
+  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
+  '- You rebuilt the app after installing the package\n' +
+  '- You are not using Expo managed workflow\n';
+
+const AMapGeolocation = NativeModules.AMapGeolocation
+  ? NativeModules.AMapGeolocation
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
 const eventEmitter = new NativeEventEmitter(AMapGeolocation);
 
 /**
